@@ -1,0 +1,40 @@
+{
+  "name": "want_to_rest",
+  "version": "0.1.0",
+  "description": "add rest button in cybozu office page",
+  "main": "index.js",
+  "scripts": {
+    "webpack": "webpack && gulp",
+    "watch": "webpack --progress --watch",
+    "build": "NODE_ENV=production webpack && gulp",
+    "clean": "rm -rf build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rhythm191/want_to_rest.git"
+  },
+  "author": "rhythm191",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rhythm191/want_to_rest/issues"
+  },
+  "homepage": "https://github.com/rhythm191/want_to_rest#readme",
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "extract-text-webpack-plugin": "^3.0.1",
+    "gulp": "^3.9.1",
+    "gulp-json-editor": "^2.2.1",
+    "gulp-load-plugins": "^1.5.0",
+    "jquery": "^3.2.1",
+    "moment": "^2.19.1",
+    "webpack": "^3.6.0",
+    "webpack-stream": "^4.0.0"
+  }
+}
