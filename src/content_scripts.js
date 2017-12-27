@@ -11,7 +11,10 @@ function add_rest_link() {
 
     let link_button_html = `
       <span class="entry">
-      <form name="AjaxXHRScheduleSimpleEntry" method="POST" action="ag.cgi?" style="display: inline">
+      <a href="#" class="js_want_to_rest">
+       休
+      </a>
+      <form class="entry_rest_schedule_mine" name="AjaxXHRScheduleSimpleEntry" method="POST" action="ag.cgi?" style="display: inline">
         <input type="hidden" name="csrf_ticket" value="${ $('[name=csrf_ticket]').val() }"/>
         <input type="hidden" name="page" value="AjaxXHRScheduleSimpleEntry">
         <input type="hidden" name="Date" value="${ query['Date'] }">
@@ -27,14 +30,38 @@ function add_rest_link() {
         <input type="hidden" name="SetDate.Month" value="${ date.month }">
         <input type="hidden" name="SetDate.Day" value="${ date.day }">
         <input type="hidden" name="Event" value="">
-        <input type="hidden" name="Detail" value="test">
+        <input type="hidden" name="Detail" value="休み(${ my_name() })">
         <input type="hidden" name="Memo" value="">
         <input type="hidden" name="Private" value="">
         <input type="hidden" name="Entry" value="1">
         <input type="hidden" name="encoding" value="utf-8">
-        <a href="#" class="js_want_to_rest">
-         休
-        </a>
+      </form>
+      <form class="entry_rest_schedule_range" name="ScheduleBannerEntry" method="POST" action="ag.cgi?" style="display: inline">
+        <input type="hidden" name="csrf_ticket" value="${ $('[name=csrf_ticket]').val() }"/>
+        <input type="hidden" name="page" value="ScheduleBannerEntry">
+        <input type="hidden" name="Date" value="${ query['Date'] }">
+        <input type="hidden" name="BDate" value="${ query['BDate'] }">
+        <input type="hidden" name="BN" value="1">
+        <input type="hidden" name="UID" value="${ uid() }">
+        <input type="hidden" name="sUID" value="${ uid() }">
+        <input type="hidden" name="BackPage" value="ScheduleIndex">
+        <input type="hidden" name="SetDate.Year" value="${ date.year }">
+        <input type="hidden" name="SetDate.Month" value="${ date.month }">
+        <input type="hidden" name="SetDate.Day" value="${ date.day }">
+        <input type="hidden" name="EndDate.Year" value="${ date.year }">
+        <input type="hidden" name="EndDate.Month" value="${ date.month }">
+        <input type="hidden" name="EndDate.Day" value="${ date.day }">
+        <input type="hidden" name="Event" value="">
+        <input type="hidden" name="Detail" value="休み(${ my_name() })">
+        <input type="hidden" name="Memo" value="">
+        <input type="hidden" name="sUIDUserSearchText" value="">
+        <input type="hidden" name="OpenPage" value="ScheduleBannerEntry">
+        <input type="hidden" name="OpenForm" value="ScheduleBannerEntry">
+        <input type="hidden" name="DeleteQuestions" value="0">
+        <input type="hidden" name="SimpleReplyEnable" value="1">
+        <input type="hidden" name="SimpleReplyConfig" value="1">
+        <input type="hidden" name="Entry" value="登録する">
+        <input type="hidden" name="AjaxRequest" value="AjaxRequest">
       </form>
       </span>
       `
@@ -42,11 +69,24 @@ function add_rest_link() {
   });
 }
 
-// 建物アイコンをクリックした時に新しいウインドウで空き施設を表示させる
+// 予定を入れる
+function entry_rest_schedule(e) {
+  entry_rest_schedule_mine(e);
+  entry_rest_schedule_range(e);
+}
+
+// 休みアイコンをクリックした時に自分自身だけのスケジュールを登録する
 function entry_rest_schedule_mine(e) {
-  let $form = $(this).closest('form');
+  let $form = $(this).nextAll('.entry_rest_schedule_mine');
   $.post('ag.cgi', $form.serialize());
- return false;
+  return false;
+}
+
+// 休みアイコンをクリックした時に自分自身だけのスケジュールを登録する
+function entry_rest_schedule_range(e) {
+  let $form = $(this).nextAll('.entry_rest_schedule_range');
+  $.post('ag.cgi', $form.serialize());
+  return false;
 }
 
 // 検索クエリをHashに変換する
@@ -86,7 +126,7 @@ function my_name() {
 
 add_rest_link();
 
-$('body').on('click', '.js_want_to_rest', entry_rest_schedule_mine);
+$('body').on('click', '.js_want_to_rest', entry_rest_schedule);
 
 // sync_selected_buildings();
 //
