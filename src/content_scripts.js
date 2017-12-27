@@ -26,14 +26,11 @@ function add_rest_link() {
         <input type="hidden" name="SetDate.Year" value="${ date.year }">
         <input type="hidden" name="SetDate.Month" value="${ date.month }">
         <input type="hidden" name="SetDate.Day" value="${ date.day }">
-        <input type="hidden" name="EndDate.Year" value="${ date.year }">
-        <input type="hidden" name="EndDate.Month" value="${ date.month }">
-        <input type="hidden" name="EndDate.Day" value="${ date.day }">
         <input type="hidden" name="Event" value="">
         <input type="hidden" name="Detail" value="test">
         <input type="hidden" name="Memo" value="">
         <input type="hidden" name="Private" value="">
-        <input type="hidden" name="Entry" value="登録する">
+        <input type="hidden" name="Entry" value="1">
         <input type="hidden" name="encoding" value="utf-8">
         <a href="#" class="js_want_to_rest">
          休
