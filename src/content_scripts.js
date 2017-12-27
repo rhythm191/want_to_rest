@@ -12,7 +12,7 @@ function add_rest_link() {
     let link_button_html = `
       <span class="entry">
       <a href="#" class="js_want_to_rest">
-       休
+       <img src="https://github.com/rhythm191/show_empty_room/raw/development/src/rest.png" alt="休" />
       </a>
       <form class="entry_rest_schedule_mine" name="AjaxXHRScheduleSimpleEntry" method="POST" action="ag.cgi?" style="display: inline">
         <input type="hidden" name="csrf_ticket" value="${ $('[name=csrf_ticket]').val() }"/>
