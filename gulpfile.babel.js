@@ -21,9 +21,21 @@ gulp.task('manifest', () => {
     .pipe(gulp.dest('build'));
 });
 
-gulp.task('default', ['manifest'])
+gulp.task('html', () => {
+  return gulp.src('src/**/*.html')
+    .pipe(gulp.dest('build'));
+});
+
+gulp.task('image', () => {
+  return gulp.src('src/**/*.png')
+    .pipe(gulp.dest('build'));
+});
+
+gulp.task('default', ['manifest', 'html', 'image'])
 
 gulp.task('watch', function() {
-  gulp.watch(['src/**/*.js'], ['webpack'])
+  gulp.watch(['src/**/*.js', 'src/**/*.sass'], ['webpack'])
   gulp.watch('src/manifest.json', ['manifest']);
+  gulp.watch('src/**/*.html', ['html']);
+  gulp.watch('src/**/*.png', ['image']);
 });

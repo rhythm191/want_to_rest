@@ -7,7 +7,10 @@ let isProduction = process.env.NODE_ENV === 'production'
 let webpack_config = [{
   context: path.join(__dirname, 'src'),
   entry: {
+    background: './background.js',
     content_scripts: './content_scripts.js',
+    popup: './popup.js',
+    popup_style: './popup.sass'
   },
   output: {
     path: path.join(__dirname, 'build'),
@@ -22,11 +25,16 @@ let webpack_config = [{
         query:{
           presets: ['es2015']
         }
+      },
+      {
+        test: /\.sass$/,
+        loader: ExtractTextPlugin.extract(`css-loader${isProduction ? '?minimize' : ''}!sass-loader`)
       }
     ]
   },
   devtool: 'inline-source-map',
   plugins: [
+    new ExtractTextPlugin('[name].css')
   ]
 }];
 

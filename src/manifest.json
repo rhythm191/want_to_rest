@@ -7,6 +7,10 @@
     "tabs",
     "storage"
   ],
+  "background": {
+    "scripts": ["background.js"],
+    "permissions": ["https://cbasp8.air.ne.jp/"]
+  },
   "content_scripts": [
     {
       "matches": [
@@ -16,5 +20,9 @@
         "content_scripts.js"
       ]
     }
-  ]
+  ],
+  "page_action": {
+    "default_icon": "rest.png",
+    "default_popup": "popup.html"
+  }
 }

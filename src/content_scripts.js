@@ -12,15 +12,15 @@ function add_rest_link() {
     let link_button_html = `
       <span class="entry">
       <a href="#" class="js_want_to_rest">
-       <img src="https://github.com/rhythm191/show_empty_room/raw/development/src/rest.png" alt="休" />
+       <img src="https://github.com/rhythm191/want_to_rest/raw/master/src/rest.png" alt="休" />
       </a>
       <form class="entry_rest_schedule_mine" name="AjaxXHRScheduleSimpleEntry" method="POST" action="ag.cgi?" style="display: inline">
         <input type="hidden" name="csrf_ticket" value="${ $('[name=csrf_ticket]').val() }"/>
         <input type="hidden" name="page" value="AjaxXHRScheduleSimpleEntry">
         <input type="hidden" name="Date" value="${ query['Date'] }">
         <input type="hidden" name="BDate" value="${ query['BDate'] }">
-        <input type="hidden" name="UID" value="${ uid() }">
-        <input type="hidden" name="sUID" value="${ uid() }">
+        <input type="hidden" name="UID" value="${ my_uid() }">
+        <input type="hidden" name="sUID" value="${ my_uid() }">
         <input type="hidden" name="ElementId" value="scheduleindex">
         <input type="hidden" name="SetTime.Hour" value="9">
         <input type="hidden" name="SetTime.Minute" value="0">
@@ -42,8 +42,10 @@ function add_rest_link() {
         <input type="hidden" name="Date" value="${ query['Date'] }">
         <input type="hidden" name="BDate" value="${ query['BDate'] }">
         <input type="hidden" name="BN" value="1">
-        <input type="hidden" name="UID" value="${ uid() }">
-        <input type="hidden" name="sUID" value="${ uid() }">
+        <input type="hidden" name="UID" value="${ my_uid() }">
+        <input type="hidden" name="sUID" value="${ my_uid() }">
+        <select name="sUID" class="js_notify_member_form" style="display: none;" multiple>
+        </select>
         <input type="hidden" name="BackPage" value="ScheduleIndex">
         <input type="hidden" name="SetDate.Year" value="${ date.year }">
         <input type="hidden" name="SetDate.Month" value="${ date.month }">
@@ -71,20 +73,19 @@ function add_rest_link() {
 
 // 予定を入れる
 function entry_rest_schedule(e) {
-  entry_rest_schedule_mine(e);
-  entry_rest_schedule_range(e);
+  entry_rest_schedule_mine(e, $(this).nextAll('.entry_rest_schedule_mine'));
+  entry_rest_schedule_range(e, $(this).nextAll('.entry_rest_schedule_range'));
+  alert('登録しました。')
 }
 
 // 休みアイコンをクリックした時に自分自身だけのスケジュールを登録する
-function entry_rest_schedule_mine(e) {
-  let $form = $(this).nextAll('.entry_rest_schedule_mine');
+function entry_rest_schedule_mine(e, $form) {
   $.post('ag.cgi', $form.serialize());
   return false;
 }
 
 // 休みアイコンをクリックした時に自分自身だけのスケジュールを登録する
-function entry_rest_schedule_range(e) {
-  let $form = $(this).nextAll('.entry_rest_schedule_range');
+function entry_rest_schedule_range(e, $form) {
   $.post('ag.cgi', $form.serialize());
   return false;
 }
@@ -113,7 +114,7 @@ function date_to_hash(date) {
 }
 
 // 自分のUIDを取得
-function uid() {
+function my_uid() {
   let query = query_to_hash($('#usermenu .vr_headerAccount a').first().attr('href') );
 
   return query['uid'];
@@ -128,24 +129,47 @@ add_rest_link();
 
 $('body').on('click', '.js_want_to_rest', entry_rest_schedule);
 
-// sync_selected_buildings();
-//
-// $.ajax('ag.cgi?page=ScheduleEntry').then(function(response) {
-//   let buildings = []
-//
-//   $(response).find('select[name="FCID"] option').each(function(i, option) {
-//     let $option = $(option);
-//
-//     if($option.val() !== "") {
-//       buildings.push({ id: $option.val(), text: $option.text() });
-//     }
-//   });
-//
-//   chrome.runtime.sendMessage({ 'buildings': buildings }, function(response) {});
-// });
-//
-// chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-//   if (request.message === "setting_update") {
-//     sync_selected_buildings();
-//   }
-// });
+
+// 選択した通知メンバー情報を設定から読み込み、フォームに反映させる
+function sync_selected_members() {
+  chrome.storage.sync.get('selected', function(settings) {
+    if (!!settings.selected && Array.isArray(settings.selected)) {
+      set_member_form(settings.selected);
+    }
+  });
+}
+
+// 引数の施設IDをそれぞれのリンクのフォームに反映させる
+// selected {Array}
+function set_member_form(selected) {
+  let $member_form = $('.js_notify_member_form');
+
+  $member_form.html('');
+  selected.forEach(function(value) {
+    $member_form.append(`<option value="${ value }" selected></option>`)
+  })
+}
+
+// chrome.storage.sync.clear();
+
+sync_selected_members();
+
+$.ajax('ag.cgi?page=ScheduleEntry').then(function(response) {
+  let members = []
+
+  $(response).find('select[name="CID"] option').each(function(i, option) {
+    let $option = $(option);
+
+    if($option.val() !== "" && $option.val() !== my_uid()) {
+      members.push({ id: $option.val(), text: $option.text() });
+    }
+  });
+
+  chrome.runtime.sendMessage({ 'members': members }, function(response) {});
+});
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  if (request.message === "setting_update") {
+    sync_selected_members();
+  }
+});
