@@ -4,7 +4,7 @@
 # インストール方法
 
 Chrome ウェブストアからインストールしてください。
-https://chrome.google.com/webstore/detail/entry-schedule-extension/lflgndoomnijngiadiefecmonpifnlbp?hl=ja
+https://chrome.google.com/webstore/detail/want-to-rest/knmeilddepgljfgmabhhojllfpldkjio?hl=ja
 
 または、次の方法を使ってください。
 
@@ -19,20 +19,9 @@ https://chrome.google.com/webstore/detail/entry-schedule-extension/lflgndoomnijn
 
 ツールバーの休みアイコンで共有する相手を設定できます。
 
-1. 予定登録画面で"隔週の日付を指定する"を選択する。
-
-![スクリーンショット](https://github.com/rhythm191/want_to_rest/raw/master/docs/screenshot_1.jpg)
+![スクリーンショット](https://github.com/rhythm191/want_to_rest/raw/master/docs/screenshot.jpg){:width="640px" height="400px" }
 
 
-2. カレンダーから開始日程をを選択する。(※日程は1つのみ選択してください)
-
-![スクリーンショット](https://github.com/rhythm191/want_to_rest/raw/master/docs/screenshot_2.jpg)
-
-3. 期限を指定する。(※必ず指定してください)
-
-![スクリーンショット](https://github.com/rhythm191/want_to_rest/raw/master/docs/screenshot_3.jpg)
-
-4. 他の項目を入力して登録してください。
 
 ## Contributing
 
