@@ -1,5 +1,6 @@
 # show_empty_room
-サイボウズOfficeに休みボタンを追加するChrome拡張機能。
+
+サイボウズ Office に休みボタンを追加する Chrome 拡張機能。
 
 # インストール方法
 
@@ -8,10 +9,10 @@ https://chrome.google.com/webstore/detail/want-to-rest/knmeilddepgljfgmabhhojllf
 
 または、次の方法を使ってください。
 
-1. この(https://github.com/rhythm191/want_to_rest/releases) から生成されたwant_to_rest.crx.zipファイルをダウンロードする。
-2. zipファイルを解凍する。
+1. この(https://github.com/rhythm191/want_to_rest/releases) から生成された want_to_rest.crx.zip ファイルをダウンロードする。
+2. zip ファイルを解凍する。
 3. [chrome://extensions/](chrome://extensions/) を開く
-4. 生成されたwant_to_rest.crxをChromeにドラック&ドロップする。
+4. 生成された want_to_rest.crx を Chrome にドラック&ドロップする。
 
 # 使い方
 
@@ -21,7 +22,7 @@ https://chrome.google.com/webstore/detail/want-to-rest/knmeilddepgljfgmabhhojllf
 
 ![スクリーンショット](https://github.com/rhythm191/want_to_rest/raw/master/docs/screenshot.jpg){:width="640px" height="400px" }
 
-
+リモートワークをする場合にも使えます。
 
 ## Contributing
 
