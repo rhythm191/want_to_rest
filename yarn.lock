@@ -2011,9 +2011,9 @@ deep-extend@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.6.0.tgz#c4fa7c95404a17a9c3e8ca7e1537312b736330ac"
 
-deepmerge@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-3.2.0.tgz#58ef463a57c08d376547f8869fdc5bcee957f44e"
+deepmerge@^4.2.1:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-4.2.2.tgz#44d2ea3679b8f4d4ffba33f03d865fc1e7bf4955"
 
 default-compare@^1.0.0:
   version "1.0.0"
@@ -2883,13 +2883,13 @@ gulp-cli@^2.2.0:
     v8flags "^3.0.1"
     yargs "^7.1.0"
 
-gulp-json-editor@^2.2.1:
-  version "2.5.2"
-  resolved "https://registry.yarnpkg.com/gulp-json-editor/-/gulp-json-editor-2.5.2.tgz#1d65b2aa3851a87cb41d41ceb0b74e0489e1b754"
+gulp-json-editor@^2.5.4:
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/gulp-json-editor/-/gulp-json-editor-2.5.4.tgz#b77b46bca22d2dd1ac9f15bbec1eddbe5ef3567c"
   dependencies:
-    deepmerge "^3.2.0"
+    deepmerge "^4.2.1"
     detect-indent "^6.0.0"
-    js-beautify "^1.9.1"
+    js-beautify "^1.10.2"
     plugin-error "^1.0.1"
     through2 "^3.0.1"
 
@@ -3457,9 +3457,9 @@ js-base64@^2.1.8, js-base64@^2.1.9:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.5.1.tgz#1efa39ef2c5f7980bb1784ade4a8af2de3291121"
 
-js-beautify@^1.9.1:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/js-beautify/-/js-beautify-1.10.0.tgz#9753a13c858d96828658cd18ae3ca0e5783ea672"
+js-beautify@^1.10.2:
+  version "1.10.2"
+  resolved "https://registry.yarnpkg.com/js-beautify/-/js-beautify-1.10.2.tgz#88c9099cd6559402b124cfab18754936f8a7b178"
   dependencies:
     config-chain "^1.1.12"
     editorconfig "^0.15.3"
