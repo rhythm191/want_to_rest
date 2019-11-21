@@ -15,7 +15,7 @@ module.exports = (env, argv) => {
       background: "./background.js",
       content_scripts: "./content_scripts.js",
       popup: "./popup.js",
-      popup_style: "./popup.sass"
+      popup_style: "./popup.scss"
     },
     output: {
       path: path.join(__dirname, "build"),
@@ -32,16 +32,11 @@ module.exports = (env, argv) => {
           }
         },
         {
-          test: /\.sass$/,
+          test: /\.scss$/,
           use: [
             IS_PRODUCTION ? MiniCssExtractPlugin.loader : "style-loader",
             "css-loader",
-            {
-              loader: "sass-loader",
-              options: {
-                indentedSyntax: true
-              }
-            }
+            "sass-loader"
           ]
         }
       ]
