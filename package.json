@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/rhythm191/want_to_rest#readme",
   "devDependencies": {
-    "@babel/core": "^7.7.2",
+    "@babel/core": "^7.7.5",
     "@babel/preset-env": "^7.7.1",
     "babel-loader": "^8.0.4",
     "css-loader": "^0.28.7",
