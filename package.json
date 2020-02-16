@@ -1,6 +1,6 @@
 {
   "name": "want_to_rest",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "add rest button in cybozu office page",
   "main": "index.js",
   "scripts": {
